@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "reuse-mesh": {
+      "type": "http",
+      "url": "https://teamrepomcp.ds-hub-cf.ru/mcp"
+    }
+  }
+}
