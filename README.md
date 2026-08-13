@@ -5,7 +5,7 @@
 ## MCP endpoint
 
 ```text
-https://teamrepomcp.ds-hub-cf.ru/mcp
+https://litellm.ds-hub-cf.ru/reuse_mesh/mcp
 ```
 
 Сервер использует Streamable HTTP. Для подключения используйте один из файлов в [`mcp-config/`](mcp-config/).
@@ -15,16 +15,18 @@ https://teamrepomcp.ds-hub-cf.ru/mcp
 ### Claude Code
 
 ```sh
-claude mcp add --transport http reuse-mesh https://teamrepomcp.ds-hub-cf.ru/mcp
+claude mcp add --transport http reuse-mesh https://litellm.ds-hub-cf.ru/reuse_mesh/mcp
 ```
 
 ### Codex CLI
 
 ```sh
-codex mcp add reuse-mesh --url https://teamrepomcp.ds-hub-cf.ru/mcp
+codex mcp add reuse-mesh --url https://litellm.ds-hub-cf.ru/reuse_mesh/mcp
 ```
 
 Если ваша IDE поддерживает импорт MCP-конфигурации, откройте или скопируйте [`.mcp.json`](.mcp.json) в конфигурацию проекта.
+
+Замените `<YOUR_LITELLM_REUSE_MESH_TOKEN>` на один из выданных virtual keys. Не публикуйте его в Git, issue или чате. Доступ к upstream `teamrepomcp.ds-hub-cf.ru` предназначен только для LiteLLM.
 
 ## Как агент должен работать
 

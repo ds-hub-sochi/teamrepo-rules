@@ -1,7 +1,10 @@
 {
   "mcpServers": {
     "reuse-mesh": {
-      "url": "https://teamrepomcp.ds-hub-cf.ru/mcp"
+      "url": "https://litellm.ds-hub-cf.ru/reuse_mesh/mcp",
+      "headers": {
+        "x-litellm-api-key": "Bearer <YOUR_LITELLM_REUSE_MESH_TOKEN>"
+      }
     }
   }
 }
