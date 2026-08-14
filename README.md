@@ -2,50 +2,11 @@
 
 Этот репозиторий подключает AI IDE к MCP-серверу Reuse Mesh. Сервер помогает находить готовые модели, датасеты, библиотеки и исходный код в дружественных источниках, следовать правилам переиспользования и передавать обратную связь авторам.
 
-## MCP endpoint
+## Подключение к любой AI IDE
 
-```text
-https://litellm.ds-hub-cf.ru/reuse_mesh/mcp
-```
+Передайте вашей AI IDE [типовое правило подключения](MCP_SETUP_RULE.md). Оно сначала попросит выбрать область настройки — только текущий проект или глобально для пользователя — и затем применит нативный способ этой IDE.
 
-Сервер использует Streamable HTTP. Для подключения используйте один из файлов в [`mcp-config/`](mcp-config/).
-
-## Быстрое подключение
-
-### Claude Code
-
-```sh
-claude mcp add --transport http reuse-mesh https://litellm.ds-hub-cf.ru/reuse_mesh/mcp
-```
-
-### Codex CLI
-
-```sh
-codex mcp add reuse-mesh --url https://litellm.ds-hub-cf.ru/reuse_mesh/mcp
-```
-
-### Cursor
-
-Откройте **Cursor Settings → Tools & MCP** и добавьте удалённый MCP-сервер либо создайте файл `~/.cursor/mcp.json` (для всех проектов) или `.cursor/mcp.json` (для одного проекта):
-
-```json
-{
-  "mcpServers": {
-    "reuse-mesh": {
-      "url": "https://litellm.ds-hub-cf.ru/reuse_mesh/mcp",
-      "headers": {
-        "x-litellm-api-key": "Bearer <YOUR_LITELLM_REUSE_MESH_TOKEN>"
-      }
-    }
-  }
-}
-```
-
-Сохраните файл и перезапустите Cursor. Проверить подключение можно в **Tools & MCP**: должны появиться инструменты Reuse Mesh. Cursor поддерживает удалённые MCP по Streamable HTTP и конфигурации в `.cursor/mcp.json`. [Документация Cursor](https://docs.cursor.com/context/model-context-protocol)
-
-Если ваша IDE поддерживает импорт MCP-конфигурации, откройте или скопируйте [`.mcp.json`](.mcp.json) в конфигурацию проекта.
-
-Замените `<YOUR_LITELLM_REUSE_MESH_TOKEN>` на один из выданных virtual keys. Не публикуйте его в Git, issue или чате. Доступ к upstream `teamrepomcp.ds-hub-cf.ru` предназначен только для LiteLLM.
+Endpoint Reuse Mesh: `https://litellm.ds-hub-cf.ru/reuse_mesh/mcp`. Для доступа потребуется выданный LiteLLM virtual key. Не публикуйте его в Git, issue или чате.
 
 ## Как агент должен работать
 
