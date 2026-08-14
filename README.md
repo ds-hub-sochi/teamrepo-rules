@@ -1,6 +1,6 @@
 # Reuse Mesh для AI IDE
 
-Этот репозиторий подключает AI IDE к MCP-серверу Reuse Mesh. Сервер помогает находить готовые компоненты в дружественных репозиториях, следовать правилам переиспользования и передавать обратную связь авторам.
+Этот репозиторий подключает AI IDE к MCP-серверу Reuse Mesh. Сервер помогает находить готовые модели, датасеты, библиотеки и исходный код в дружественных источниках, следовать правилам переиспользования и передавать обратную связь авторам.
 
 ## MCP endpoint
 
@@ -24,6 +24,25 @@ claude mcp add --transport http reuse-mesh https://litellm.ds-hub-cf.ru/reuse_me
 codex mcp add reuse-mesh --url https://litellm.ds-hub-cf.ru/reuse_mesh/mcp
 ```
 
+### Cursor
+
+Откройте **Cursor Settings → Tools & MCP** и добавьте удалённый MCP-сервер либо создайте файл `~/.cursor/mcp.json` (для всех проектов) или `.cursor/mcp.json` (для одного проекта):
+
+```json
+{
+  "mcpServers": {
+    "reuse-mesh": {
+      "url": "https://litellm.ds-hub-cf.ru/reuse_mesh/mcp",
+      "headers": {
+        "x-litellm-api-key": "Bearer <YOUR_LITELLM_REUSE_MESH_TOKEN>"
+      }
+    }
+  }
+}
+```
+
+Сохраните файл и перезапустите Cursor. Проверить подключение можно в **Tools & MCP**: должны появиться инструменты Reuse Mesh. Cursor поддерживает удалённые MCP по Streamable HTTP и конфигурации в `.cursor/mcp.json`. [Документация Cursor](https://docs.cursor.com/context/model-context-protocol)
+
 Если ваша IDE поддерживает импорт MCP-конфигурации, откройте или скопируйте [`.mcp.json`](.mcp.json) в конфигурацию проекта.
 
 Замените `<YOUR_LITELLM_REUSE_MESH_TOKEN>` на один из выданных virtual keys. Не публикуйте его в Git, issue или чате. Доступ к upstream `teamrepomcp.ds-hub-cf.ru` предназначен только для LiteLLM.
@@ -43,8 +62,9 @@ codex mcp add reuse-mesh --url https://litellm.ds-hub-cf.ru/reuse_mesh/mcp
 | --- | --- |
 | `get_rules` | Получить актуальные правила переиспользования. |
 | `list_repositories` | Посмотреть дружественные источники. |
-| `search_components` | Найти подходящий код/модель. |
+| `search_components` | Найти подходящую модель, датасет, библиотеку или репозиторий. |
 | `submit_feedback` | Зафиксировать reuse, отказ или предложение улучшения. |
+| `get_feedback` | Получить сводку или полные безопасные записи feedback по источнику. |
 
 ## Дружественные источники
 
