@@ -1,0 +1,4 @@
+interface:
+  display_name: "Reuse Mesh"
+  short_description: "Приоритетный поиск дружеского кода"
+  default_prompt: "Use $reuse-mesh to configure Reuse Mesh and search friendly sources first."
