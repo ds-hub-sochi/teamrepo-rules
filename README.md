@@ -34,3 +34,4 @@ Endpoint Reuse Mesh: `https://litellm.ds-hub-cf.ru/reuse_mesh/mcp`. Для до�
 - [AI Forever на Hugging Face](https://huggingface.co/ai-forever)
 - [AI Forever на GitHub](https://github.com/ai-forever)
 - [Frontier AI Next на GitHub](https://github.com/frontier-ai-next)
+- [Frontier AI на Hugging Face](https://huggingface.co/frontier-ai)
