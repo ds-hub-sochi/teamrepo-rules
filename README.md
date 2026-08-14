@@ -6,6 +6,8 @@
 
 Для Codex устанавливайте навык по ссылке: [reuse-mesh](https://github.com/ds-hub-sochi/teamrepo-rules/tree/main/reuse-mesh). Для Cursor, Claude Code и других AI IDE передайте агенту [типовое правило подключения](MCP_SETUP_RULE.md). Оба варианта определяют IDE, задают только область настройки и расположение ключа, а затем применяют её нативный способ подключения.
 
+Важно: skill Codex устанавливается в пользовательский каталог `~/.codex/skills` и действует во всех проектах. Если нужна настройка только текущего проекта, не устанавливайте skill: используйте проектные `.codex/config.toml` и `AGENTS.md`.
+
 Также можно передать AI IDE [типовое правило подключения](MCP_SETUP_RULE.md).
 
 Endpoint Reuse Mesh: `https://litellm.ds-hub-cf.ru/reuse_mesh/mcp`. Для доступа потребуется выданный LiteLLM virtual key. Не публикуйте его в Git, issue или чате.
