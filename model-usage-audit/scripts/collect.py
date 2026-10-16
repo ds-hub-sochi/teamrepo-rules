@@ -19,7 +19,7 @@ import urllib.error
 import urllib.parse
 import urllib.request
 
-VERSION = '1.0.0'
+VERSION = '1.1.0'
 EXTS = {'.py', '.ipynb', '.yaml', '.yml', '.json', '.toml', '.md', '.txt', '.js', '.ts', '.tsx', '.sh', '.ini', '.cfg'}
 SKIP = {'.git', 'node_modules', '.venv', 'venv', 'vendor', 'third_party', 'dist', 'build', '__pycache__'}
 FAMILIES = {
@@ -171,7 +171,9 @@ def scan_repo(api, repo, args):
                   fork=repo['fork'], description=repo.get('description'), pushed_at=repo['pushed_at'],
                   branch=repo['default_branch'], commit=None, scan_status='unavailable',
                   files_read=0, candidates_total=None, tree_truncated=None, skipped={}, errors=[],
-                  owner=None, owner_evidence=None, usages=[], manifests=[])
+                  owner=repo['owner']['login'], repository_owner=repo['owner']['login'],
+                  owner_evidence=repo['owner']['html_url'], owner_source='github_repository_owner',
+                  code_owner=None, code_owner_evidence=None, usages=[], manifests=[])
     try:
         if repo.get('size') == 0:
             result['scan_status'] = 'empty'
@@ -194,8 +196,8 @@ def scan_repo(api, repo, args):
                     # Only the catch-all declaration; path ownership is not model ownership.
                     owners = [l.split()[1:] for l in content.splitlines() if l.strip().startswith('* ')]
                     if owners:
-                        result['owner'] = ' '.join(owners[-1])
-                        result['owner_evidence'] = 'https://github.com/%s/blob/%s/%s' % (name, sha, urllib.parse.quote(path))
+                        result['code_owner'] = ' '.join(owners[-1])
+                        result['code_owner_evidence'] = 'https://github.com/%s/blob/%s/%s' % (name, sha, urllib.parse.quote(path))
                 if PurePosixPath(path).name == 'model-usage.json':
                     # Preserve declarations separately; agent validates them against code.
                     result['manifests'].append({'path': path, 'sha': item['sha']})

@@ -4,6 +4,7 @@ import json
 from pathlib import Path
 import tempfile
 import unittest
+from unittest.mock import patch
 from collect import choose_files, discover
 from render import prepare, render
 
@@ -125,6 +126,44 @@ class AuditTests(unittest.TestCase):
         api = FakeAPI()
         self.assertEqual(len(list_repos(api, 'org', 'public')), 100)
         self.assertEqual(len(api.calls), 2)
+
+    def test_responsible_is_repository_owner_even_with_conflicting_overlay(self):
+        data = snapshot()
+        data['repositories'][0].update(repository_owner='org', code_owner='@another-team')
+        row = prepare(data, review(owner='wrong-user', applications=[{'owner':'also-wrong'}]))['rows'][0]
+        self.assertEqual((row['owner'], row['owner_source'], row['code_owner']), ('org','github_repository_owner','@another-team'))
+
+    def test_business_task_needs_pinned_code_evidence(self):
+        with self.assertRaises(ValueError):
+            prepare(snapshot(), review(business_task='Find animal intervals'))
+        evidence = review()['reviews'][0]['review_evidence']
+        row = prepare(snapshot(), review(business_task='Find animal intervals', business_evidence=evidence))['rows'][0]
+        self.assertEqual(row['business_analysis'], 'analysed')
+
+    def test_model_card_capability_is_not_project_business_analysis(self):
+        info = {'lookup_status':'found','description':'Classifies images','source_url':'https://huggingface.co/a/b','checked_at':'2026-10-16'}
+        row = prepare(snapshot(), review(model_info=info))['rows'][0]
+        self.assertEqual(row['model_lookup'], 'found')
+        self.assertEqual(row['business_analysis'], 'pending')
+
+    def test_model_description_requires_source_and_date(self):
+        with self.assertRaises(ValueError):
+            prepare(snapshot(), review(model_info={'lookup_status':'found','description':'A model'}))
+
+    def test_hf_alias_retains_requested_and_canonical_identifiers(self):
+        from lookup_models import lookup
+        metadata = json.dumps({'id':'publisher/canonical','sha':'a'*40,'cardData':{'license':'apache-2.0'}})
+        with tempfile.TemporaryDirectory() as tmp, patch('lookup_models.get', side_effect=[(metadata,None),('# Card',None)]) as get:
+            row = lookup('publisher/old-name', Path(tmp))
+            self.assertEqual((row['requested_id'],row['id'],row['match_status']), ('publisher/old-name','publisher/canonical','alias'))
+            self.assertTrue(get.call_args_list[1].args[0].endswith('/README.md'))
+            self.assertEqual(row['source_revision'],'a'*40)
+
+    def test_hf_access_error_is_not_nonexistence(self):
+        from lookup_models import lookup
+        with tempfile.TemporaryDirectory() as tmp, patch('lookup_models.get', return_value=(None,'http_401')):
+            row = lookup('publisher/model', Path(tmp))
+        self.assertEqual(row['lookup_status'],'http_401')
 
     def test_html_payload_cannot_escape_script(self):
         data = snapshot()

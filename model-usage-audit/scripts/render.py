@@ -53,7 +53,8 @@ def prepare(data, review=None, public_only=False, previous=None):
         raise ValueError('Duplicate review id')
     review_map = {r['id']: r for r in reviews}
     allowed = {'canonical_model', 'task', 'owner', 'origin', 'stage', 'status', 'revision',
-               'upstream', 'license', 'review_evidence', 'runtime_evidence', 'lifecycle', 'role', 'base_model', 'notes', 'family'}
+               'upstream', 'license', 'review_evidence', 'runtime_evidence', 'lifecycle', 'role', 'base_model', 'notes', 'family',
+               'business_task', 'business_domain', 'business_evidence', 'input', 'output', 'code_trace', 'model_info'}
     origins = {'open_source', 'open_weights', 'custom', 'fine_tuned', 'proprietary_api', 'unknown'}
     stages = {'documentation', 'configuration', 'experiment', 'training_code', 'inference_code', 'production_verified', 'unknown'}
     statuses = {'not_checked', 'no_issue_found', 'review_needed', 'deprecated', 'retired'}
@@ -61,7 +62,7 @@ def prepare(data, review=None, public_only=False, previous=None):
     for repo in repos:
         for original in repo['usages']:
             u = copy.deepcopy(original)
-            u.update(private=repo['private'], commit=repo['commit'], code_owner=repo.get('owner'),
+            u.update(private=repo['private'], commit=repo['commit'], code_owner=repo.get('code_owner'),
                      scan_status=repo['scan_status'], lifecycle={'status': 'not_checked'})
             item = review_map.get(u['id'])
             applications = [{}]
@@ -80,7 +81,11 @@ def prepare(data, review=None, public_only=False, previous=None):
                         raise ValueError('applications must be nonempty list')
             for index, app in enumerate(applications):
                 row = copy.deepcopy(u)
-                row.update({k: app[k] for k in ('task', 'owner', 'stage', 'review_evidence') if k in app})
+                row.update({k: app[k] for k in allowed if k in app})
+                # The requested accountability rule is the GitHub repository owner.
+                row['owner'] = repo.get('repository_owner') or repo['repository'].split('/')[0]
+                row['owner_source'] = 'github_repository_owner'
+                row['owner_evidence'] = repo.get('owner_evidence') or 'https://github.com/' + row['owner']
                 if len(applications) > 1:
                     row['id'] += ':' + str(index)
                 if row['origin'] not in origins or row['stage'] not in stages or row['status'] not in {'candidate', 'reviewed'}:
@@ -94,6 +99,18 @@ def prepare(data, review=None, public_only=False, previous=None):
                     row['stage'] = 'inference_code'
                     warnings.append(row['id'] + ': no runtime evidence; production unverified')
                 row['production_verified'] = row['stage'] == 'production_verified'
+                row['business_analysis'] = 'pending'
+                if row.get('business_task'):
+                    evidence = row.get('business_evidence', [])
+                    prefix = 'https://github.com/%s/blob/%s/' % (repo['repository'], repo['commit'])
+                    if not evidence or not all(safe_url(url) and url.startswith(prefix) for url in evidence):
+                        raise ValueError('Business task needs evidence pinned to the repository SHA')
+                    row['business_analysis'] = 'analysed'
+                info = row.get('model_info', {})
+                if info.get('lookup_status') in {'found', 'related', 'code_only'}:
+                    if not info.get('description') or not safe_url(info.get('source_url')) or not info.get('checked_at'):
+                        raise ValueError('Model description requires a dated source')
+                row['model_lookup'] = info.get('lookup_status', 'not_checked')
                 lifecycle = row['lifecycle']
                 if lifecycle.get('status') not in statuses:
                     raise ValueError('Invalid lifecycle status')
@@ -152,9 +169,10 @@ def prepare(data, review=None, public_only=False, previous=None):
 
 def render(data, output):
     template = (Path(__file__).resolve().parent.parent / 'assets/dashboard.html').read_text(encoding='utf-8')
+    script = (Path(__file__).resolve().parent.parent / 'assets/dashboard.js').read_text(encoding='utf-8')
     payload = json.dumps(data, ensure_ascii=False).replace('<', '\\u003c').replace('>', '\\u003e').replace('&', '\\u0026')
     output.parent.mkdir(parents=True, exist_ok=True)
-    output.write_text(template.replace('__AUDIT_JSON__', payload), encoding='utf-8')
+    output.write_text(template.replace('__AUDIT_SCRIPT__', script).replace('__AUDIT_JSON__', payload), encoding='utf-8')
 
 
 def main():

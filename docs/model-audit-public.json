@@ -46,8 +46,8 @@
         "budget": 47
       },
       "errors": [],
-      "owner": null,
-      "owner_evidence": null,
+      "owner": "ds-hub-sochi",
+      "owner_evidence": "https://github.com/ds-hub-sochi",
       "usages": [
         {
           "id": "e63f26fcb4524ab0",
@@ -319,7 +319,10 @@
           ]
         }
       ],
-      "manifests": []
+      "manifests": [],
+      "code_owner": null,
+      "repository_owner": "ds-hub-sochi",
+      "owner_source": "github_repository_owner"
     },
     {
       "repository": "ds-hub-sochi/EcoAssist",
@@ -341,8 +344,8 @@
         "budget": 24
       },
       "errors": [],
-      "owner": null,
-      "owner_evidence": null,
+      "owner": "ds-hub-sochi",
+      "owner_evidence": "https://github.com/ds-hub-sochi",
       "usages": [
         {
           "id": "9effc7fbbcaa61cb",
@@ -3628,7 +3631,10 @@
           ]
         }
       ],
-      "manifests": []
+      "manifests": [],
+      "code_owner": null,
+      "repository_owner": "ds-hub-sochi",
+      "owner_source": "github_repository_owner"
     },
     {
       "repository": "ds-hub-sochi/InkSight-tool",
@@ -3650,8 +3656,8 @@
         "budget": 27
       },
       "errors": [],
-      "owner": null,
-      "owner_evidence": null,
+      "owner": "ds-hub-sochi",
+      "owner_evidence": "https://github.com/ds-hub-sochi",
       "usages": [
         {
           "id": "6c87b4e776686ab2",
@@ -3706,7 +3712,10 @@
           ]
         }
       ],
-      "manifests": []
+      "manifests": [],
+      "code_owner": null,
+      "repository_owner": "ds-hub-sochi",
+      "owner_source": "github_repository_owner"
     },
     {
       "repository": "ds-hub-sochi/MAS",
@@ -3728,8 +3737,8 @@
         "budget": 0
       },
       "errors": [],
-      "owner": null,
-      "owner_evidence": null,
+      "owner": "ds-hub-sochi",
+      "owner_evidence": "https://github.com/ds-hub-sochi",
       "usages": [
         {
           "id": "61c2048aa8391cb4",
@@ -3932,7 +3941,10 @@
           ]
         }
       ],
-      "manifests": []
+      "manifests": [],
+      "code_owner": null,
+      "repository_owner": "ds-hub-sochi",
+      "owner_source": "github_repository_owner"
     },
     {
       "repository": "ds-hub-sochi/mimic_text2video",
@@ -3954,8 +3966,8 @@
         "budget": 4
       },
       "errors": [],
-      "owner": null,
-      "owner_evidence": null,
+      "owner": "ds-hub-sochi",
+      "owner_evidence": "https://github.com/ds-hub-sochi",
       "usages": [
         {
           "id": "41622fc7df6e2fa7",
@@ -4268,7 +4280,10 @@
           ]
         }
       ],
-      "manifests": []
+      "manifests": [],
+      "code_owner": null,
+      "repository_owner": "ds-hub-sochi",
+      "owner_source": "github_repository_owner"
     },
     {
       "repository": "ds-hub-sochi/multilingual-SLR-model",
@@ -4290,8 +4305,8 @@
         "budget": 26
       },
       "errors": [],
-      "owner": null,
-      "owner_evidence": null,
+      "owner": "ds-hub-sochi",
+      "owner_evidence": "https://github.com/ds-hub-sochi",
       "usages": [
         {
           "id": "0f41948caf76d80b",
@@ -4401,7 +4416,10 @@
           ]
         }
       ],
-      "manifests": []
+      "manifests": [],
+      "code_owner": null,
+      "repository_owner": "ds-hub-sochi",
+      "owner_source": "github_repository_owner"
     },
     {
       "repository": "ds-hub-sochi/pylint-hook",
@@ -4423,10 +4441,13 @@
         "budget": 0
       },
       "errors": [],
-      "owner": null,
-      "owner_evidence": null,
+      "owner": "ds-hub-sochi",
+      "owner_evidence": "https://github.com/ds-hub-sochi",
       "usages": [],
-      "manifests": []
+      "manifests": [],
+      "code_owner": null,
+      "repository_owner": "ds-hub-sochi",
+      "owner_source": "github_repository_owner"
     },
     {
       "repository": "ds-hub-sochi/sl-techreport",
@@ -4448,8 +4469,8 @@
         "budget": 558
       },
       "errors": [],
-      "owner": null,
-      "owner_evidence": null,
+      "owner": "ds-hub-sochi",
+      "owner_evidence": "https://github.com/ds-hub-sochi",
       "usages": [
         {
           "id": "fea0871b40580abe",
@@ -4539,7 +4560,10 @@
           ]
         }
       ],
-      "manifests": []
+      "manifests": [],
+      "code_owner": null,
+      "repository_owner": "ds-hub-sochi",
+      "owner_source": "github_repository_owner"
     },
     {
       "repository": "ds-hub-sochi/snow_leopard_reid",
@@ -4561,8 +4585,8 @@
         "budget": 47
       },
       "errors": [],
-      "owner": null,
-      "owner_evidence": null,
+      "owner": "ds-hub-sochi",
+      "owner_evidence": "https://github.com/ds-hub-sochi",
       "usages": [
         {
           "id": "283b249470cf93a1",
@@ -4834,7 +4858,10 @@
           ]
         }
       ],
-      "manifests": []
+      "manifests": [],
+      "code_owner": null,
+      "repository_owner": "ds-hub-sochi",
+      "owner_source": "github_repository_owner"
     },
     {
       "repository": "ds-hub-sochi/teamrepo-rules",
@@ -4856,10 +4883,13 @@
         "budget": 0
       },
       "errors": [],
-      "owner": null,
-      "owner_evidence": null,
+      "owner": "ds-hub-sochi",
+      "owner_evidence": "https://github.com/ds-hub-sochi",
       "usages": [],
-      "manifests": []
+      "manifests": [],
+      "code_owner": null,
+      "repository_owner": "ds-hub-sochi",
+      "owner_source": "github_repository_owner"
     },
     {
       "repository": "ds-hub-sochi/testing-ivr-stand",
@@ -4881,10 +4911,13 @@
         "budget": 0
       },
       "errors": [],
-      "owner": null,
-      "owner_evidence": null,
+      "owner": "ds-hub-sochi",
+      "owner_evidence": "https://github.com/ds-hub-sochi",
       "usages": [],
-      "manifests": []
+      "manifests": [],
+      "code_owner": null,
+      "repository_owner": "ds-hub-sochi",
+      "owner_source": "github_repository_owner"
     },
     {
       "repository": "ds-hub-sochi/urfu-sl-segmentation",
@@ -4906,8 +4939,8 @@
         "budget": 26
       },
       "errors": [],
-      "owner": null,
-      "owner_evidence": null,
+      "owner": "ds-hub-sochi",
+      "owner_evidence": "https://github.com/ds-hub-sochi",
       "usages": [
         {
           "id": "fd4c94db885ba661",
@@ -5229,7 +5262,10 @@
           ]
         }
       ],
-      "manifests": []
+      "manifests": [],
+      "code_owner": null,
+      "repository_owner": "ds-hub-sochi",
+      "owner_source": "github_repository_owner"
     },
     {
       "repository": "ds-hub-sochi/VLM_retain_with_SMILES_2025",
@@ -5251,8 +5287,8 @@
         "budget": 0
       },
       "errors": [],
-      "owner": null,
-      "owner_evidence": null,
+      "owner": "ds-hub-sochi",
+      "owner_evidence": "https://github.com/ds-hub-sochi",
       "usages": [
         {
           "id": "d296745fbd62b9c9",
@@ -5492,7 +5528,10 @@
           ]
         }
       ],
-      "manifests": []
+      "manifests": [],
+      "code_owner": null,
+      "repository_owner": "ds-hub-sochi",
+      "owner_source": "github_repository_owner"
     },
     {
       "repository": "ds-hub-sochi/wolf_sounds_demo",
@@ -5519,8 +5558,8 @@
           "error": "UnicodeDecodeError"
         }
       ],
-      "owner": null,
-      "owner_evidence": null,
+      "owner": "ds-hub-sochi",
+      "owner_evidence": "https://github.com/ds-hub-sochi",
       "usages": [
         {
           "id": "545559df0db70666",
@@ -5593,7 +5632,14 @@
           ]
         }
       ],
-      "manifests": []
+      "manifests": [],
+      "code_owner": null,
+      "repository_owner": "ds-hub-sochi",
+      "owner_source": "github_repository_owner"
     }
-  ]
+  ],
+  "owner_enrichment": {
+    "source": "GET /orgs/ds-hub-sochi/repos?per_page=100&type=all; all pages",
+    "checked_at": "2026-10-16"
+  }
 }
