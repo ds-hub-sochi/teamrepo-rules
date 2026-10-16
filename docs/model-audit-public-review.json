@@ -1,0 +1,253 @@
+{
+  "schema_version": 1,
+  "reviews": [
+    {
+      "id": "ff110d1fae6f08d5",
+      "reviewed_commit": "95bdee8bdcd8b1a1c8e854cb531bb13575c663fe",
+      "canonical_model": "MIT/ast-finetuned-audioset-10-10-0.4593",
+      "task": "Базовая аудиомодель для детектора воя волков; далее заменяется classifier и загружаются локальные веса",
+      "stage": "inference_code",
+      "origin": "open_weights",
+      "owner": null,
+      "status": "reviewed",
+      "review_evidence": [
+        "https://github.com/ds-hub-sochi/wolf_sounds_demo/blob/95bdee8bdcd8b1a1c8e854cb531bb13575c663fe/src/model.py#L22",
+        "https://github.com/ds-hub-sochi/wolf_sounds_demo/blob/95bdee8bdcd8b1a1c8e854cb531bb13575c663fe/src/feature_extractor.py#L11"
+      ],
+      "lifecycle": {
+        "status": "not_checked"
+      },
+      "upstream": "https://huggingface.co/MIT/ast-finetuned-audioset-10-10-0.4593",
+      "license": "bsd-3-clause (base model card)",
+      "role": "backbone",
+      "family": "Audio Spectrogram Transformer"
+    },
+    {
+      "id": "b7cf7e2b961db8c4",
+      "reviewed_commit": "c9c19ae5e2c6e76b9a99c7b83377a58efa6eb460",
+      "canonical_model": "sentence-transformers/distiluse-base-multilingual-cased-v1",
+      "task": "Эмбеддинги текста для поиска подходящих жестовых видеофрагментов через FAISS",
+      "stage": "inference_code",
+      "origin": "open_weights",
+      "owner": null,
+      "status": "reviewed",
+      "review_evidence": [
+        "https://github.com/ds-hub-sochi/mimic_text2video/blob/c9c19ae5e2c6e76b9a99c7b83377a58efa6eb460/utils/text_processing.py#L28"
+      ],
+      "lifecycle": {
+        "status": "not_checked"
+      },
+      "upstream": "https://huggingface.co/sentence-transformers/distiluse-base-multilingual-cased-v1",
+      "role": "embedding",
+      "family": "Embeddings"
+    },
+    {
+      "id": "74c9f645ac541894",
+      "reviewed_commit": "285ae4f57fce059d10cfa1a2c4e903107065b4f3",
+      "canonical_model": "Qwen/Qwen2.5-VL-7B-Instruct",
+      "task": "Конфигурация SFT LoRA для распознавания структур молекул и генерации SMILES",
+      "stage": "configuration",
+      "origin": "open_weights",
+      "owner": null,
+      "status": "reviewed",
+      "review_evidence": [
+        "https://github.com/ds-hub-sochi/VLM_retain_with_SMILES_2025/blob/285ae4f57fce059d10cfa1a2c4e903107065b4f3/llama_factory_configs/calc_metrics.py#L16",
+        "https://github.com/ds-hub-sochi/VLM_retain_with_SMILES_2025/blob/285ae4f57fce059d10cfa1a2c4e903107065b4f3/llama_factory_configs/qwen2.5vl_7b_lora_train.yaml#L2"
+      ],
+      "lifecycle": {
+        "status": "not_checked"
+      },
+      "upstream": "https://huggingface.co/Qwen/Qwen2.5-VL-7B-Instruct",
+      "license": "apache-2.0 (base model card)",
+      "notes": "Конфигурация do_train=true, LoRA rank 64; завершённое обучение и итоговый артефакт этим не подтверждены.",
+      "family": "VLM"
+    },
+    {
+      "id": "e63f26fcb4524ab0",
+      "reviewed_commit": "23490da4b030dc1916e3858a55eb9e9eee8945fa",
+      "canonical_model": "torchvision/efficientnet_b7",
+      "task": "Тест фабрики моделей: загрузка ImageNet-весов torchvision и проверка соответствия слоёв",
+      "stage": "experiment",
+      "origin": "unknown",
+      "owner": null,
+      "status": "reviewed",
+      "review_evidence": [
+        "https://github.com/ds-hub-sochi/animal_classification/blob/23490da4b030dc1916e3858a55eb9e9eee8945fa/tests/test_model_factory.py#L11"
+      ],
+      "lifecycle": {
+        "status": "not_checked"
+      },
+      "role": "backbone",
+      "notes": "Найдено в tests/test_model_factory.py, не доказательство применения в сервисе.",
+      "family": "EfficientNet"
+    },
+    {
+      "id": "61c2048aa8391cb4",
+      "reviewed_commit": "fff8c03bbd5800b9615907ff5761018dc7360b8a",
+      "canonical_model": "arabic_PP-OCRv5_mobile_rec",
+      "task": "Конфигурация обучения арабского OCR на MAS + Muharaf",
+      "stage": "configuration",
+      "origin": "unknown",
+      "owner": null,
+      "status": "reviewed",
+      "review_evidence": [
+        "https://github.com/ds-hub-sochi/MAS/blob/fff8c03bbd5800b9615907ff5761018dc7360b8a/configs/paddle_MAS_Muharaf_rec_mobile.yaml#L3",
+        "https://github.com/ds-hub-sochi/MAS/blob/fff8c03bbd5800b9615907ff5761018dc7360b8a/configs/paddle_MAS_rec_mobile.yaml#L3"
+      ],
+      "lifecycle": {
+        "status": "not_checked"
+      },
+      "notes": "Указан путь к pretrained .pdparams; наличие весов и завершённое обучение не проверены.",
+      "family": "OCR"
+    },
+    {
+      "id": "4ca58f94607282ae",
+      "reviewed_commit": "fff8c03bbd5800b9615907ff5761018dc7360b8a",
+      "canonical_model": "arabic_PP-OCRv5_server_rec",
+      "task": "Конфигурация обучения серверного арабского OCR на MAS",
+      "stage": "configuration",
+      "origin": "unknown",
+      "owner": null,
+      "status": "reviewed",
+      "review_evidence": [
+        "https://github.com/ds-hub-sochi/MAS/blob/fff8c03bbd5800b9615907ff5761018dc7360b8a/configs/paddle_MAS_rec_server.yaml#L2"
+      ],
+      "lifecycle": {
+        "status": "not_checked"
+      },
+      "notes": "Конфигурация задаёт pretrained_model; фактический артефакт не проверен.",
+      "family": "OCR"
+    },
+    {
+      "id": "d9a155d978dfeb40",
+      "reviewed_commit": "e8af071dc1e8ee4c789e2341e6c7220e71984694",
+      "canonical_model": "openrouter:qwen/qwen3-235b-a22b:free",
+      "task": "Default model_name для чата по документам через OpenRouter; фактический режим выбирается окружением",
+      "stage": "configuration",
+      "origin": "unknown",
+      "owner": null,
+      "status": "reviewed",
+      "review_evidence": [
+        "https://github.com/ds-hub-sochi/InkSight-tool/blob/e8af071dc1e8ee4c789e2341e6c7220e71984694/backend/src/agentic_rag/core/config.py#L21",
+        "https://github.com/ds-hub-sochi/InkSight-tool/blob/e8af071dc1e8ee4c789e2341e6c7220e71984694/backend/src/agentic_rag/services/agent.py#L25"
+      ],
+      "lifecycle": {
+        "status": "not_checked"
+      },
+      "notes": "Этот API-route не определяет лицензию весов. При USE_LOCAL_MODEL фактическое имя берётся из AGENT_LLM_MODEL и неизвестно по репозиторию.",
+      "family": "LLM"
+    }
+  ],
+  "manual_usages": [
+    {
+      "id": "manual:InkSight-tool:embedding",
+      "repository": "ds-hub-sochi/InkSight-tool",
+      "model": "sentence-transformers/all-MiniLM-L6-v2",
+      "reviewed_commit": "e8af071dc1e8ee4c789e2341e6c7220e71984694",
+      "canonical_model": "sentence-transformers/all-MiniLM-L6-v2",
+      "task": "Эмбеддинги документов и запросов в локальном Chroma-хранилище",
+      "stage": "inference_code",
+      "origin": "unknown",
+      "owner": null,
+      "status": "reviewed",
+      "review_evidence": [
+        "https://github.com/ds-hub-sochi/InkSight-tool/blob/e8af071dc1e8ee4c789e2341e6c7220e71984694/backend/src/agentic_rag/services/vector_store.py#L25",
+        "https://github.com/ds-hub-sochi/InkSight-tool/blob/e8af071dc1e8ee4c789e2341e6c7220e71984694/backend/src/agentic_rag/core/config.py#L31"
+      ],
+      "evidence": [
+        {
+          "path": "backend/src/agentic_rag/services/vector_store.py",
+          "line": 14,
+          "cell": null,
+          "kind": "manual_review",
+          "context": "code",
+          "url": "https://github.com/ds-hub-sochi/InkSight-tool/blob/e8af071dc1e8ee4c789e2341e6c7220e71984694/backend/src/agentic_rag/services/vector_store.py#L14"
+        }
+      ],
+      "lifecycle": {
+        "status": "not_checked"
+      },
+      "role": "embedding",
+      "family": "Embeddings"
+    },
+    {
+      "id": "manual:InkSight-tool:reranker",
+      "repository": "ds-hub-sochi/InkSight-tool",
+      "model": "cross-encoder/ms-marco-MiniLM-L-6-v2",
+      "reviewed_commit": "e8af071dc1e8ee4c789e2341e6c7220e71984694",
+      "canonical_model": "cross-encoder/ms-marco-MiniLM-L-6-v2",
+      "task": "Опциональное переранжирование найденных документов; по умолчанию выключено",
+      "stage": "configuration",
+      "origin": "unknown",
+      "owner": null,
+      "status": "reviewed",
+      "review_evidence": [
+        "https://github.com/ds-hub-sochi/InkSight-tool/blob/e8af071dc1e8ee4c789e2341e6c7220e71984694/backend/src/agentic_rag/services/reranker.py#L30",
+        "https://github.com/ds-hub-sochi/InkSight-tool/blob/e8af071dc1e8ee4c789e2341e6c7220e71984694/backend/src/agentic_rag/services/retrieval.py#L15"
+      ],
+      "evidence": [
+        {
+          "path": "backend/src/agentic_rag/services/reranker.py",
+          "line": 11,
+          "cell": null,
+          "kind": "manual_review",
+          "context": "code",
+          "url": "https://github.com/ds-hub-sochi/InkSight-tool/blob/e8af071dc1e8ee4c789e2341e6c7220e71984694/backend/src/agentic_rag/services/reranker.py#L11"
+        }
+      ],
+      "lifecycle": {
+        "status": "not_checked"
+      },
+      "role": "reranker",
+      "notes": "Имя в settings.reranker_model отличается от default в RetrievalService; прохождение значения settings до reranker не подтверждено.",
+      "family": "Cross-encoder"
+    },
+    {
+      "id": "manual:wolf_sounds_demo:local-checkpoint",
+      "repository": "ds-hub-sochi/wolf_sounds_demo",
+      "model": "wolf_sounds_demo/ASTBasedClassifier",
+      "reviewed_commit": "95bdee8bdcd8b1a1c8e854cb531bb13575c663fe",
+      "canonical_model": "wolf_sounds_demo/ASTBasedClassifier",
+      "task": "Итоговый двухклассовый детектор звука: AST с заменённой головой и локальными весами",
+      "stage": "inference_code",
+      "origin": "unknown",
+      "owner": null,
+      "status": "reviewed",
+      "review_evidence": [
+        "https://github.com/ds-hub-sochi/wolf_sounds_demo/blob/95bdee8bdcd8b1a1c8e854cb531bb13575c663fe/src/model.py#L36"
+      ],
+      "evidence": [
+        {
+          "path": "src/model.py",
+          "line": 36,
+          "cell": null,
+          "kind": "manual_review",
+          "context": "code",
+          "url": "https://github.com/ds-hub-sochi/wolf_sounds_demo/blob/95bdee8bdcd8b1a1c8e854cb531bb13575c663fe/src/model.py#L36"
+        }
+      ],
+      "lifecycle": {
+        "status": "not_checked"
+      },
+      "family": "Audio Spectrogram Transformer",
+      "role": "final_model",
+      "base_model": "MIT/ast-finetuned-audioset-10-10-0.4593",
+      "notes": "Свой класс и загрузка внешнего .pth подтверждены кодом; происхождение/обучение чекпойнта и его checksum неизвестны."
+    }
+  ],
+  "repository_findings": [
+    {
+      "repository": "ds-hub-sochi/InkSight-tool",
+      "reviewed_commit": "e8af071dc1e8ee4c789e2341e6c7220e71984694",
+      "title": "create_react_agent: deprecated API в актуальном LangGraph",
+      "status": "review_needed",
+      "reason": "Код импортирует langgraph.prebuilt.create_react_agent. Актуальный upstream помечает API deprecated. Текущая установленная версия и наличие сбоя не проверялись.",
+      "next_step": "Проверить фактический lockfile/runtime и оценить миграцию с регрессией tool calls, памяти и retrieval.",
+      "source": "https://reference.langchain.com/python/langgraph.prebuilt/chat_agent_executor/create_react_agent",
+      "checked_at": "2026-10-16",
+      "code_evidence": [
+        "https://github.com/ds-hub-sochi/InkSight-tool/blob/e8af071dc1e8ee4c789e2341e6c7220e71984694/backend/src/agentic_rag/services/agent.py#L7"
+      ]
+    }
+  ]
+}
