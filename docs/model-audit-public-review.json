@@ -1,0 +1,799 @@
+{
+  "schema_version": 1,
+  "reviews": [
+    {
+      "id": "ff110d1fae6f08d5",
+      "reviewed_commit": "95bdee8bdcd8b1a1c8e854cb531bb13575c663fe",
+      "canonical_model": "MIT/ast-finetuned-audioset-10-10-0.4593",
+      "task": "Базовая аудиомодель для детектора воя волков; далее заменяется classifier и загружаются локальные веса",
+      "stage": "inference_code",
+      "origin": "open_weights",
+      "owner": "ds-hub-sochi",
+      "status": "reviewed",
+      "review_evidence": [
+        "https://github.com/ds-hub-sochi/wolf_sounds_demo/blob/95bdee8bdcd8b1a1c8e854cb531bb13575c663fe/src/model.py#L22",
+        "https://github.com/ds-hub-sochi/wolf_sounds_demo/blob/95bdee8bdcd8b1a1c8e854cb531bb13575c663fe/src/feature_extractor.py#L11"
+      ],
+      "lifecycle": {
+        "status": "not_checked"
+      },
+      "upstream": "https://huggingface.co/MIT/ast-finetuned-audioset-10-10-0.4593",
+      "license": "bsd-3-clause (base model card)",
+      "role": "backbone",
+      "family": "Audio Spectrogram Transformer",
+      "business_task": "Автоматически размечать полевые аудиозаписи: выделять интервалы воя волков и других животных",
+      "business_domain": "Мониторинг животных",
+      "input": "Фрагмент WAV → спектрограмма",
+      "output": "Основа двух специализированных классификаторов звука",
+      "business_evidence": [
+        "https://github.com/ds-hub-sochi/wolf_sounds_demo/blob/95bdee8bdcd8b1a1c8e854cb531bb13575c663fe/streamlit_app.py#L77",
+        "https://github.com/ds-hub-sochi/wolf_sounds_demo/blob/95bdee8bdcd8b1a1c8e854cb531bb13575c663fe/streamlit_app.py#L64",
+        "https://github.com/ds-hub-sochi/wolf_sounds_demo/blob/95bdee8bdcd8b1a1c8e854cb531bb13575c663fe/src/model.py#L22",
+        "https://github.com/ds-hub-sochi/wolf_sounds_demo/blob/95bdee8bdcd8b1a1c8e854cb531bb13575c663fe/streamlit_app.py#L136"
+      ],
+      "code_trace": [
+        {
+          "step": "Пользователь загружает WAV",
+          "source": "https://github.com/ds-hub-sochi/wolf_sounds_demo/blob/95bdee8bdcd8b1a1c8e854cb531bb13575c663fe/streamlit_app.py#L77"
+        },
+        {
+          "step": "Создаются два AST-классификатора",
+          "source": "https://github.com/ds-hub-sochi/wolf_sounds_demo/blob/95bdee8bdcd8b1a1c8e854cb531bb13575c663fe/streamlit_app.py#L64"
+        },
+        {
+          "step": "Загружается основа AST",
+          "source": "https://github.com/ds-hub-sochi/wolf_sounds_demo/blob/95bdee8bdcd8b1a1c8e854cb531bb13575c663fe/src/model.py#L22"
+        },
+        {
+          "step": "Вероятности превращаются в классы и интервалы",
+          "source": "https://github.com/ds-hub-sochi/wolf_sounds_demo/blob/95bdee8bdcd8b1a1c8e854cb531bb13575c663fe/streamlit_app.py#L136"
+        }
+      ],
+      "model_info": {
+        "requested_id": "MIT/ast-finetuned-audioset-10-10-0.4593",
+        "lookup_status": "found",
+        "checked_at": "2026-10-16T09:03:01+00:00",
+        "metadata_url": "https://huggingface.co/api/models/MIT/ast-finetuned-audioset-10-10-0.4593",
+        "id": "MIT/ast-finetuned-audioset-10-10-0.4593",
+        "source_url": "https://huggingface.co/MIT/ast-finetuned-audioset-10-10-0.4593",
+        "source_revision": "f826b80d28226b62986cc218e5cec390b1096902",
+        "publisher": "MIT",
+        "model_task": "audio-classification",
+        "architecture": "audio-spectrogram-transformer",
+        "license": "bsd-3-clause",
+        "languages": null,
+        "private": false,
+        "gated": false,
+        "parameters": 86594063,
+        "match_status": "exact",
+        "readme_status": "found",
+        "readme_url": "https://huggingface.co/MIT/ast-finetuned-audioset-10-10-0.4593/blob/f826b80d28226b62986cc218e5cec390b1096902/README.md",
+        "description": "Audio Spectrogram Transformer: классификатор звуков по спектрограмме, предварительно дообученный на AudioSet. Здесь используется как основа; конечные головы и веса в проекте другие."
+      }
+    },
+    {
+      "id": "b7cf7e2b961db8c4",
+      "reviewed_commit": "c9c19ae5e2c6e76b9a99c7b83377a58efa6eb460",
+      "canonical_model": "sentence-transformers/distiluse-base-multilingual-cased-v1",
+      "task": "Эмбеддинги текста для поиска подходящих жестовых видеофрагментов через FAISS",
+      "stage": "inference_code",
+      "origin": "open_weights",
+      "owner": "ds-hub-sochi",
+      "status": "reviewed",
+      "review_evidence": [
+        "https://github.com/ds-hub-sochi/mimic_text2video/blob/c9c19ae5e2c6e76b9a99c7b83377a58efa6eb460/utils/text_processing.py#L28"
+      ],
+      "lifecycle": {
+        "status": "not_checked"
+      },
+      "upstream": "https://huggingface.co/sentence-transformers/distiluse-base-multilingual-cased-v1",
+      "role": "embedding",
+      "family": "Embeddings",
+      "business_task": "Подбирать видео нужных жестов по введённому тексту для сборки жестового видеосообщения",
+      "business_domain": "Генерация жестового видео",
+      "input": "Слово/лемма из введённого сообщения",
+      "output": "Ближайшая глосса и путь к видеофрагменту",
+      "business_evidence": [
+        "https://github.com/ds-hub-sochi/mimic_text2video/blob/c9c19ae5e2c6e76b9a99c7b83377a58efa6eb460/utils/text_processing.py#L19",
+        "https://github.com/ds-hub-sochi/mimic_text2video/blob/c9c19ae5e2c6e76b9a99c7b83377a58efa6eb460/utils/text_processing.py#L52",
+        "https://github.com/ds-hub-sochi/mimic_text2video/blob/c9c19ae5e2c6e76b9a99c7b83377a58efa6eb460/utils/text_processing.py#L74"
+      ],
+      "code_trace": [
+        {
+          "step": "Загружаются модель и индекс глосс",
+          "source": "https://github.com/ds-hub-sochi/mimic_text2video/blob/c9c19ae5e2c6e76b9a99c7b83377a58efa6eb460/utils/text_processing.py#L19"
+        },
+        {
+          "step": "При отсутствии прямого совпадения слово кодируется и ищется через FAISS",
+          "source": "https://github.com/ds-hub-sochi/mimic_text2video/blob/c9c19ae5e2c6e76b9a99c7b83377a58efa6eb460/utils/text_processing.py#L52"
+        },
+        {
+          "step": "Результат возвращается как глосса и файл видео",
+          "source": "https://github.com/ds-hub-sochi/mimic_text2video/blob/c9c19ae5e2c6e76b9a99c7b83377a58efa6eb460/utils/text_processing.py#L74"
+        }
+      ],
+      "model_info": {
+        "requested_id": "sentence-transformers/distiluse-base-multilingual-cased-v1",
+        "lookup_status": "found",
+        "checked_at": "2026-10-16T09:03:03+00:00",
+        "metadata_url": "https://huggingface.co/api/models/sentence-transformers/distiluse-base-multilingual-cased-v1",
+        "id": "sentence-transformers/distiluse-base-multilingual-cased-v1",
+        "source_url": "https://huggingface.co/sentence-transformers/distiluse-base-multilingual-cased-v1",
+        "source_revision": "826fee3d516ebb14987355af373f5b69101c7006",
+        "publisher": "sentence-transformers",
+        "model_task": "sentence-similarity",
+        "architecture": "distilbert",
+        "license": "apache-2.0",
+        "languages": [
+          "multilingual",
+          "ar",
+          "zh",
+          "nl",
+          "en",
+          "fr",
+          "de",
+          "it",
+          "ko",
+          "pl",
+          "pt",
+          "ru",
+          "es",
+          "tr"
+        ],
+        "private": false,
+        "gated": false,
+        "parameters": 134734080,
+        "match_status": "exact",
+        "readme_status": "found",
+        "readme_url": "https://huggingface.co/sentence-transformers/distiluse-base-multilingual-cased-v1/blob/826fee3d516ebb14987355af373f5b69101c7006/README.md",
+        "description": "Многоязычный SentenceTransformer на основе DistilBERT. Преобразует текст в вектор из 512 чисел для сравнения смысла и семантического поиска; сам видео не генерирует."
+      }
+    },
+    {
+      "id": "74c9f645ac541894",
+      "reviewed_commit": "285ae4f57fce059d10cfa1a2c4e903107065b4f3",
+      "canonical_model": "Qwen/Qwen2.5-VL-7B-Instruct",
+      "task": "Конфигурация SFT LoRA для OCR исторических рукописей; оценка качества распознанного текста",
+      "stage": "configuration",
+      "origin": "open_weights",
+      "owner": "ds-hub-sochi",
+      "status": "reviewed",
+      "review_evidence": [
+        "https://github.com/ds-hub-sochi/VLM_retain_with_SMILES_2025/blob/285ae4f57fce059d10cfa1a2c4e903107065b4f3/llama_factory_configs/calc_metrics.py#L16",
+        "https://github.com/ds-hub-sochi/VLM_retain_with_SMILES_2025/blob/285ae4f57fce059d10cfa1a2c4e903107065b4f3/llama_factory_configs/qwen2.5vl_7b_lora_train.yaml#L2"
+      ],
+      "lifecycle": {
+        "status": "not_checked"
+      },
+      "upstream": "https://huggingface.co/Qwen/Qwen2.5-VL-7B-Instruct",
+      "license": "apache-2.0 (base model card)",
+      "notes": "В выбранном pipeline используются peter_multimodal и метрики текста. Название репозитория со SMILES не подтверждает задачу распознавания молекул. Завершение обучения и итоговый артефакт не проверены.",
+      "family": "VLM",
+      "business_task": "Читать текст исторических рукописей с изображений, исследуя дообучение VLM без потери её общих возможностей",
+      "business_domain": "Распознавание исторических рукописей",
+      "input": "Изображение строки рукописи и инструкция",
+      "output": "Распознанный текст; метрики ошибок для сравнения с эталоном",
+      "business_evidence": [
+        "https://github.com/ds-hub-sochi/VLM_retain_with_SMILES_2025/blob/285ae4f57fce059d10cfa1a2c4e903107065b4f3/llama_factory_configs/qwen2.5vl_7b_lora_train.yaml#L2",
+        "https://github.com/ds-hub-sochi/VLM_retain_with_SMILES_2025/blob/285ae4f57fce059d10cfa1a2c4e903107065b4f3/llama_factory_configs/qwen2.5vl_7b_lora_train.yaml#L18",
+        "https://github.com/ds-hub-sochi/VLM_retain_with_SMILES_2025/blob/285ae4f57fce059d10cfa1a2c4e903107065b4f3/llama_factory_configs/calc_metrics.py#L137",
+        "https://github.com/ds-hub-sochi/VLM_retain_with_SMILES_2025/blob/285ae4f57fce059d10cfa1a2c4e903107065b4f3/llama_factory_configs/calc_metrics.py#L180",
+        "https://github.com/ds-hub-sochi/VLM_retain_with_SMILES_2025/blob/285ae4f57fce059d10cfa1a2c4e903107065b4f3/llama_factory_configs/calc_metrics.py#L63"
+      ],
+      "code_trace": [
+        {
+          "step": "Выбрана Qwen и LoRA SFT",
+          "source": "https://github.com/ds-hub-sochi/VLM_retain_with_SMILES_2025/blob/285ae4f57fce059d10cfa1a2c4e903107065b4f3/llama_factory_configs/qwen2.5vl_7b_lora_train.yaml#L2"
+        },
+        {
+          "step": "Конфиг задаёт датасеты peter_multimodal",
+          "source": "https://github.com/ds-hub-sochi/VLM_retain_with_SMILES_2025/blob/285ae4f57fce059d10cfa1a2c4e903107065b4f3/llama_factory_configs/qwen2.5vl_7b_lora_train.yaml#L18"
+        },
+        {
+          "step": "Изображение и prompt передаются VLM",
+          "source": "https://github.com/ds-hub-sochi/VLM_retain_with_SMILES_2025/blob/285ae4f57fce059d10cfa1a2c4e903107065b4f3/llama_factory_configs/calc_metrics.py#L137"
+        },
+        {
+          "step": "VLM генерирует текст",
+          "source": "https://github.com/ds-hub-sochi/VLM_retain_with_SMILES_2025/blob/285ae4f57fce059d10cfa1a2c4e903107065b4f3/llama_factory_configs/calc_metrics.py#L180"
+        },
+        {
+          "step": "Текст сравнивается с эталоном по WER",
+          "source": "https://github.com/ds-hub-sochi/VLM_retain_with_SMILES_2025/blob/285ae4f57fce059d10cfa1a2c4e903107065b4f3/llama_factory_configs/calc_metrics.py#L63"
+        }
+      ],
+      "model_info": {
+        "requested_id": "Qwen/Qwen2.5-VL-7B-Instruct",
+        "lookup_status": "found",
+        "checked_at": "2026-10-16T09:03:05+00:00",
+        "metadata_url": "https://huggingface.co/api/models/Qwen/Qwen2.5-VL-7B-Instruct",
+        "id": "Qwen/Qwen2.5-VL-7B-Instruct",
+        "source_url": "https://huggingface.co/Qwen/Qwen2.5-VL-7B-Instruct",
+        "source_revision": "cc594898137f460bfe9f0759e9844b3ce807cfb5",
+        "publisher": "Qwen",
+        "model_task": "image-text-to-text",
+        "architecture": "qwen2_5_vl",
+        "license": "apache-2.0",
+        "languages": [
+          "en"
+        ],
+        "private": false,
+        "gated": false,
+        "parameters": 8292166656,
+        "match_status": "exact",
+        "readme_status": "found",
+        "readme_url": "https://huggingface.co/Qwen/Qwen2.5-VL-7B-Instruct/blob/cc594898137f460bfe9f0759e9844b3ce807cfb5/README.md",
+        "description": "Мультимодальная модель Qwen: принимает изображения и текст, генерирует текст, поддерживает OCR и понимание визуального содержимого. В этом проекте настраивается для исторических рукописей."
+      }
+    },
+    {
+      "id": "e63f26fcb4524ab0",
+      "reviewed_commit": "23490da4b030dc1916e3858a55eb9e9eee8945fa",
+      "canonical_model": "torchvision/efficientnet_b7",
+      "task": "Тест фабрики моделей: загрузка ImageNet-весов torchvision и проверка соответствия слоёв",
+      "stage": "experiment",
+      "origin": "open_weights",
+      "owner": "ds-hub-sochi",
+      "status": "reviewed",
+      "review_evidence": [
+        "https://github.com/ds-hub-sochi/animal_classification/blob/23490da4b030dc1916e3858a55eb9e9eee8945fa/tests/test_model_factory.py#L11"
+      ],
+      "lifecycle": {
+        "status": "not_checked"
+      },
+      "role": "backbone",
+      "notes": "Найдено в tests/test_model_factory.py, не доказательство применения в сервисе.",
+      "family": "EfficientNet",
+      "business_task": "Разрабатывать классификатор животных по снимкам: проверить корректность создания backbone с ImageNet-весами",
+      "business_domain": "Классификация животных",
+      "input": "Имя EfficientNet_B7 и эталонные ImageNet-веса в тесте",
+      "output": "Модель из фабрики и результат проверки совпадения слоёв",
+      "business_evidence": [
+        "https://github.com/ds-hub-sochi/animal_classification/blob/23490da4b030dc1916e3858a55eb9e9eee8945fa/tests/test_model_factory.py#L10",
+        "https://github.com/ds-hub-sochi/animal_classification/blob/23490da4b030dc1916e3858a55eb9e9eee8945fa/irbis_classifier/src/models/factory.py#L33",
+        "https://github.com/ds-hub-sochi/animal_classification/blob/23490da4b030dc1916e3858a55eb9e9eee8945fa/tests/test_model_factory.py#L22"
+      ],
+      "code_trace": [
+        {
+          "step": "Тест задаёт EfficientNet B7 и эталонные веса",
+          "source": "https://github.com/ds-hub-sochi/animal_classification/blob/23490da4b030dc1916e3858a55eb9e9eee8945fa/tests/test_model_factory.py#L10"
+        },
+        {
+          "step": "Фабрика создаёт torchvision/timm модель и меняет число классов при необходимости",
+          "source": "https://github.com/ds-hub-sochi/animal_classification/blob/23490da4b030dc1916e3858a55eb9e9eee8945fa/irbis_classifier/src/models/factory.py#L33"
+        },
+        {
+          "step": "Тест сравнивает веса слоёв",
+          "source": "https://github.com/ds-hub-sochi/animal_classification/blob/23490da4b030dc1916e3858a55eb9e9eee8945fa/tests/test_model_factory.py#L22"
+        }
+      ],
+      "model_info": {
+        "id": "torchvision/efficientnet_b7",
+        "lookup_status": "found",
+        "match_status": "exact",
+        "publisher": "torchvision",
+        "description": "Свёрточная модель EfficientNet B7 для классификации изображений. Указанные в тесте веса IMAGENET1K_V1 обучены на 1000 классах ImageNet. Это именно torchvision-вариант, не похожий checkpoint timm.",
+        "model_task": "image-classification",
+        "architecture": "EfficientNet B7",
+        "parameters": 66347960,
+        "source_url": "https://docs.pytorch.org/vision/stable/models/generated/torchvision.models.efficientnet_b7.html",
+        "checked_at": "2026-10-16",
+        "searches": [
+          {
+            "query": "torchvision efficientnet_b7 IMAGENET1K_V1",
+            "result": "Official torchvision documentation matches the constructor and weight enum."
+          }
+        ]
+      },
+      "revision": "IMAGENET1K_V1"
+    },
+    {
+      "id": "61c2048aa8391cb4",
+      "reviewed_commit": "fff8c03bbd5800b9615907ff5761018dc7360b8a",
+      "canonical_model": "arabic_PP-OCRv5_mobile_rec",
+      "task": "Конфигурация обучения арабского OCR на MAS + Muharaf",
+      "stage": "configuration",
+      "origin": "open_weights",
+      "owner": "ds-hub-sochi",
+      "status": "reviewed",
+      "review_evidence": [
+        "https://github.com/ds-hub-sochi/MAS/blob/fff8c03bbd5800b9615907ff5761018dc7360b8a/configs/paddle_MAS_Muharaf_rec_mobile.yaml#L3",
+        "https://github.com/ds-hub-sochi/MAS/blob/fff8c03bbd5800b9615907ff5761018dc7360b8a/configs/paddle_MAS_rec_mobile.yaml#L3"
+      ],
+      "lifecycle": {
+        "status": "not_checked"
+      },
+      "notes": "Указан путь к pretrained .pdparams; наличие весов и завершённое обучение не проверены.",
+      "family": "OCR",
+      "business_task": "Оцифровывать строки исторических арабских рукописей и сравнивать качество OCR на MAS и Muharaf",
+      "business_domain": "Распознавание исторических рукописей",
+      "input": "Изображения строк арабской рукописи и эталонные транскрипции",
+      "output": "Конфигурация дообучения распознавателя строк; не подтверждённый результат обучения",
+      "business_evidence": [
+        "https://github.com/ds-hub-sochi/MAS/blob/fff8c03bbd5800b9615907ff5761018dc7360b8a/configs/paddle_MAS_Muharaf_rec_mobile.yaml#L3",
+        "https://github.com/ds-hub-sochi/MAS/blob/fff8c03bbd5800b9615907ff5761018dc7360b8a/configs/paddle_MAS_Muharaf_rec_mobile.yaml#L21",
+        "https://github.com/ds-hub-sochi/MAS/blob/fff8c03bbd5800b9615907ff5761018dc7360b8a/README.md#L3"
+      ],
+      "code_trace": [
+        {
+          "step": "Определена модель распознавания строк",
+          "source": "https://github.com/ds-hub-sochi/MAS/blob/fff8c03bbd5800b9615907ff5761018dc7360b8a/configs/paddle_MAS_Muharaf_rec_mobile.yaml#L3"
+        },
+        {
+          "step": "Заданы начальные pretrained-веса",
+          "source": "https://github.com/ds-hub-sochi/MAS/blob/fff8c03bbd5800b9615907ff5761018dc7360b8a/configs/paddle_MAS_Muharaf_rec_mobile.yaml#L21"
+        },
+        {
+          "step": "Предметная область и уровень строк описаны в проекте",
+          "source": "https://github.com/ds-hub-sochi/MAS/blob/fff8c03bbd5800b9615907ff5761018dc7360b8a/README.md#L3"
+        }
+      ],
+      "model_info": {
+        "requested_id": "PaddlePaddle/arabic_PP-OCRv5_mobile_rec",
+        "lookup_status": "found",
+        "checked_at": "2026-10-16T09:03:15+00:00",
+        "metadata_url": "https://huggingface.co/api/models/PaddlePaddle/arabic_PP-OCRv5_mobile_rec",
+        "id": "PaddlePaddle/arabic_PP-OCRv5_mobile_rec",
+        "source_url": "https://huggingface.co/PaddlePaddle/arabic_PP-OCRv5_mobile_rec",
+        "source_revision": "33d91636a65dca87f5562cc48860332ae367ee1b",
+        "publisher": "PaddlePaddle",
+        "model_task": "image-to-text",
+        "architecture": null,
+        "license": "apache-2.0",
+        "languages": [
+          "en"
+        ],
+        "private": false,
+        "gated": false,
+        "parameters": null,
+        "match_status": "exact",
+        "readme_status": "found",
+        "readme_url": "https://huggingface.co/PaddlePaddle/arabic_PP-OCRv5_mobile_rec/blob/33d91636a65dca87f5562cc48860332ae367ee1b/README.md",
+        "description": "Компактный распознаватель строк арабского текста семейства PP-OCRv5 от PaddleOCR. Принимает изображение строки и выдаёт текст. В MAS используется как основа конфигурации дообучения, а не как доказанный финальный checkpoint."
+      }
+    },
+    {
+      "id": "4ca58f94607282ae",
+      "reviewed_commit": "fff8c03bbd5800b9615907ff5761018dc7360b8a",
+      "canonical_model": "arabic_PP-OCRv5_server_rec",
+      "task": "Конфигурация обучения серверного арабского OCR на MAS",
+      "stage": "configuration",
+      "origin": "unknown",
+      "owner": "ds-hub-sochi",
+      "status": "reviewed",
+      "review_evidence": [
+        "https://github.com/ds-hub-sochi/MAS/blob/fff8c03bbd5800b9615907ff5761018dc7360b8a/configs/paddle_MAS_rec_server.yaml#L2"
+      ],
+      "lifecycle": {
+        "status": "not_checked"
+      },
+      "notes": "Конфигурация задаёт pretrained_model; фактический артефакт не проверен.",
+      "family": "OCR",
+      "business_task": "Оцифровывать строки исторических арабских рукописей и сравнивать качество OCR на MAS",
+      "business_domain": "Распознавание исторических рукописей",
+      "input": "Изображения строк арабской рукописи и эталонные транскрипции",
+      "output": "Конфигурация дообучения распознавателя строк; не подтверждённый результат обучения",
+      "business_evidence": [
+        "https://github.com/ds-hub-sochi/MAS/blob/fff8c03bbd5800b9615907ff5761018dc7360b8a/configs/paddle_MAS_rec_server.yaml#L2",
+        "https://github.com/ds-hub-sochi/MAS/blob/fff8c03bbd5800b9615907ff5761018dc7360b8a/configs/paddle_MAS_rec_server.yaml#L18",
+        "https://github.com/ds-hub-sochi/MAS/blob/fff8c03bbd5800b9615907ff5761018dc7360b8a/README.md#L3"
+      ],
+      "code_trace": [
+        {
+          "step": "Определена модель распознавания строк",
+          "source": "https://github.com/ds-hub-sochi/MAS/blob/fff8c03bbd5800b9615907ff5761018dc7360b8a/configs/paddle_MAS_rec_server.yaml#L2"
+        },
+        {
+          "step": "Заданы начальные pretrained-веса",
+          "source": "https://github.com/ds-hub-sochi/MAS/blob/fff8c03bbd5800b9615907ff5761018dc7360b8a/configs/paddle_MAS_rec_server.yaml#L18"
+        },
+        {
+          "step": "Предметная область и уровень строк описаны в проекте",
+          "source": "https://github.com/ds-hub-sochi/MAS/blob/fff8c03bbd5800b9615907ff5761018dc7360b8a/README.md#L3"
+        }
+      ],
+      "model_info": {
+        "requested_id": "PaddlePaddle/arabic_PP-OCRv5_server_rec",
+        "lookup_status": "related",
+        "checked_at": "2026-10-16T09:03:18+00:00",
+        "metadata_url": "https://huggingface.co/api/models/PaddlePaddle/PP-OCRv5_server_rec",
+        "id": "PaddlePaddle/PP-OCRv5_server_rec",
+        "source_url": "https://huggingface.co/PaddlePaddle/PP-OCRv5_server_rec",
+        "source_revision": "b26c3587fda8da3c8ec0ce357214b4d661ff1558",
+        "publisher": "PaddlePaddle",
+        "model_task": "image-to-text",
+        "architecture": null,
+        "license": "apache-2.0",
+        "languages": [
+          "en",
+          "zh"
+        ],
+        "private": false,
+        "gated": false,
+        "parameters": null,
+        "match_status": "related",
+        "readme_status": "found",
+        "readme_url": "https://huggingface.co/PaddlePaddle/PP-OCRv5_server_rec/blob/b26c3587fda8da3c8ec0ce357214b4d661ff1558/README.md",
+        "description": "Найден общий серверный PP-OCRv5 для распознавания строк. Точное арабское имя из конфигурации не подтверждено публичным поиском: этот профиль описывает возможную основу, а не идентифицированные арабские веса.",
+        "searches": [
+          {
+            "query": "arabic_PP-OCRv5_server_rec",
+            "results": [],
+            "checked_at": "2026-10-16T09:03:21+00:00"
+          },
+          {
+            "query": "PaddlePaddle/arabic_PP-OCRv5_server_rec",
+            "result": "Direct API returned http_401; existence/access unresolved."
+          }
+        ]
+      }
+    },
+    {
+      "id": "d9a155d978dfeb40",
+      "reviewed_commit": "e8af071dc1e8ee4c789e2341e6c7220e71984694",
+      "canonical_model": "openrouter:qwen/qwen3-235b-a22b:free",
+      "task": "Default model_name для чата по документам через OpenRouter; фактический режим выбирается окружением",
+      "stage": "configuration",
+      "origin": "proprietary_api",
+      "owner": "ds-hub-sochi",
+      "status": "reviewed",
+      "review_evidence": [
+        "https://github.com/ds-hub-sochi/InkSight-tool/blob/e8af071dc1e8ee4c789e2341e6c7220e71984694/backend/src/agentic_rag/core/config.py#L21",
+        "https://github.com/ds-hub-sochi/InkSight-tool/blob/e8af071dc1e8ee4c789e2341e6c7220e71984694/backend/src/agentic_rag/services/agent.py#L25"
+      ],
+      "lifecycle": {
+        "status": "not_checked"
+      },
+      "notes": "В проекте подключение через API, при этом номинальная базовая модель Qwen3 имеет открытые веса. При USE_LOCAL_MODEL фактическое имя берётся из AGENT_LLM_MODEL.",
+      "family": "LLM",
+      "business_task": "Помогать исследователю разбирать древние арабские рукописи Центральной Азии: отвечать на вопросы с опорой на найденные фрагменты",
+      "business_domain": "Поиск и анализ рукописей",
+      "input": "Вопрос пользователя и фрагменты из базы рукописей",
+      "output": "Ответ ассистента с контекстом документов",
+      "business_evidence": [
+        "https://github.com/ds-hub-sochi/InkSight-tool/blob/e8af071dc1e8ee4c789e2341e6c7220e71984694/backend/src/agentic_rag/api/routes.py#L31",
+        "https://github.com/ds-hub-sochi/InkSight-tool/blob/e8af071dc1e8ee4c789e2341e6c7220e71984694/backend/src/agentic_rag/services/agent.py#L25",
+        "https://github.com/ds-hub-sochi/InkSight-tool/blob/e8af071dc1e8ee4c789e2341e6c7220e71984694/backend/src/agentic_rag/core/config.py#L21",
+        "https://github.com/ds-hub-sochi/InkSight-tool/blob/e8af071dc1e8ee4c789e2341e6c7220e71984694/backend/src/agentic_rag/services/agent.py#L68",
+        "https://github.com/ds-hub-sochi/InkSight-tool/blob/e8af071dc1e8ee4c789e2341e6c7220e71984694/backend/src/agentic_rag/services/prompts.py#L3"
+      ],
+      "code_trace": [
+        {
+          "step": "API принимает сообщение пользователя",
+          "source": "https://github.com/ds-hub-sochi/InkSight-tool/blob/e8af071dc1e8ee4c789e2341e6c7220e71984694/backend/src/agentic_rag/api/routes.py#L31"
+        },
+        {
+          "step": "Агент выбирает локальный или OpenRouter backend",
+          "source": "https://github.com/ds-hub-sochi/InkSight-tool/blob/e8af071dc1e8ee4c789e2341e6c7220e71984694/backend/src/agentic_rag/services/agent.py#L25"
+        },
+        {
+          "step": "Default API-route задаётся в settings",
+          "source": "https://github.com/ds-hub-sochi/InkSight-tool/blob/e8af071dc1e8ee4c789e2341e6c7220e71984694/backend/src/agentic_rag/core/config.py#L21"
+        },
+        {
+          "step": "Tool ищет текст рукописей",
+          "source": "https://github.com/ds-hub-sochi/InkSight-tool/blob/e8af071dc1e8ee4c789e2341e6c7220e71984694/backend/src/agentic_rag/services/agent.py#L68"
+        },
+        {
+          "step": "Системный prompt задаёт предметную область",
+          "source": "https://github.com/ds-hub-sochi/InkSight-tool/blob/e8af071dc1e8ee4c789e2341e6c7220e71984694/backend/src/agentic_rag/services/prompts.py#L3"
+        }
+      ],
+      "model_info": {
+        "requested_id": "Qwen/Qwen3-235B-A22B",
+        "lookup_status": "related",
+        "checked_at": "2026-10-16T09:03:08+00:00",
+        "metadata_url": "https://huggingface.co/api/models/Qwen/Qwen3-235B-A22B",
+        "id": "Qwen/Qwen3-235B-A22B",
+        "source_url": "https://huggingface.co/Qwen/Qwen3-235B-A22B",
+        "source_revision": "8efa61729e24bd65b1d152b5ab5409052aa80e65",
+        "publisher": "Qwen",
+        "model_task": "text-generation",
+        "architecture": "qwen3_moe",
+        "license": "apache-2.0",
+        "languages": null,
+        "private": false,
+        "gated": false,
+        "parameters": 235093634560,
+        "match_status": "base_only",
+        "readme_status": "found",
+        "readme_url": "https://huggingface.co/Qwen/Qwen3-235B-A22B/blob/8efa61729e24bd65b1d152b5ab5409052aa80e65/README.md",
+        "description": "Qwen3 — большая текстовая модель Mixture-of-Experts: около 235 млрд параметров, из них около 22 млрд активны. Генерирует ответы и поддерживает рассуждения. В коде указано API-имя OpenRouter; конкретная ревизия весов провайдера не установлена."
+      }
+    }
+  ],
+  "manual_usages": [
+    {
+      "id": "manual:InkSight-tool:embedding",
+      "repository": "ds-hub-sochi/InkSight-tool",
+      "model": "sentence-transformers/all-MiniLM-L6-v2",
+      "reviewed_commit": "e8af071dc1e8ee4c789e2341e6c7220e71984694",
+      "canonical_model": "sentence-transformers/all-MiniLM-L6-v2",
+      "task": "Эмбеддинги документов и запросов в локальном Chroma-хранилище",
+      "stage": "inference_code",
+      "origin": "open_weights",
+      "owner": "ds-hub-sochi",
+      "status": "reviewed",
+      "review_evidence": [
+        "https://github.com/ds-hub-sochi/InkSight-tool/blob/e8af071dc1e8ee4c789e2341e6c7220e71984694/backend/src/agentic_rag/services/vector_store.py#L25",
+        "https://github.com/ds-hub-sochi/InkSight-tool/blob/e8af071dc1e8ee4c789e2341e6c7220e71984694/backend/src/agentic_rag/core/config.py#L31"
+      ],
+      "evidence": [
+        {
+          "path": "backend/src/agentic_rag/services/vector_store.py",
+          "line": 14,
+          "cell": null,
+          "kind": "manual_review",
+          "context": "code",
+          "url": "https://github.com/ds-hub-sochi/InkSight-tool/blob/e8af071dc1e8ee4c789e2341e6c7220e71984694/backend/src/agentic_rag/services/vector_store.py#L14"
+        }
+      ],
+      "lifecycle": {
+        "status": "not_checked"
+      },
+      "role": "embedding",
+      "family": "Embeddings",
+      "business_task": "Находить фрагменты базы рукописей, подходящие к вопросу исследователя, чтобы ассистент отвечал с опорой на документы",
+      "business_domain": "Поиск и анализ рукописей",
+      "input": "Текстовый фрагмент документа или запрос",
+      "output": "Вектор из 384 чисел для поиска соседних фрагментов в Chroma",
+      "business_evidence": [
+        "https://github.com/ds-hub-sochi/InkSight-tool/blob/e8af071dc1e8ee4c789e2341e6c7220e71984694/backend/src/agentic_rag/api/routes.py#L137",
+        "https://github.com/ds-hub-sochi/InkSight-tool/blob/e8af071dc1e8ee4c789e2341e6c7220e71984694/backend/src/agentic_rag/services/vector_store.py#L25",
+        "https://github.com/ds-hub-sochi/InkSight-tool/blob/e8af071dc1e8ee4c789e2341e6c7220e71984694/backend/src/agentic_rag/services/retrieval.py#L56",
+        "https://github.com/ds-hub-sochi/InkSight-tool/blob/e8af071dc1e8ee4c789e2341e6c7220e71984694/backend/src/agentic_rag/services/agent.py#L68"
+      ],
+      "code_trace": [
+        {
+          "step": "Загруженный документ разбивается и добавляется в базу",
+          "source": "https://github.com/ds-hub-sochi/InkSight-tool/blob/e8af071dc1e8ee4c789e2341e6c7220e71984694/backend/src/agentic_rag/api/routes.py#L137"
+        },
+        {
+          "step": "Создаётся HuggingFaceEmbeddings с заданной моделью",
+          "source": "https://github.com/ds-hub-sochi/InkSight-tool/blob/e8af071dc1e8ee4c789e2341e6c7220e71984694/backend/src/agentic_rag/services/vector_store.py#L25"
+        },
+        {
+          "step": "Поиск документов используется retrieval-сервисом",
+          "source": "https://github.com/ds-hub-sochi/InkSight-tool/blob/e8af071dc1e8ee4c789e2341e6c7220e71984694/backend/src/agentic_rag/services/retrieval.py#L56"
+        },
+        {
+          "step": "Агент вызывает поиск по базе рукописей",
+          "source": "https://github.com/ds-hub-sochi/InkSight-tool/blob/e8af071dc1e8ee4c789e2341e6c7220e71984694/backend/src/agentic_rag/services/agent.py#L68"
+        }
+      ],
+      "model_info": {
+        "requested_id": "sentence-transformers/all-MiniLM-L6-v2",
+        "lookup_status": "found",
+        "checked_at": "2026-10-16T09:03:10+00:00",
+        "metadata_url": "https://huggingface.co/api/models/sentence-transformers/all-MiniLM-L6-v2",
+        "id": "sentence-transformers/all-MiniLM-L6-v2",
+        "source_url": "https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2",
+        "source_revision": "1110a243fdf4706b3f48f1d95db1a4f5529b4d41",
+        "publisher": "sentence-transformers",
+        "model_task": "sentence-similarity",
+        "architecture": "bert",
+        "license": "apache-2.0",
+        "languages": "en",
+        "private": false,
+        "gated": false,
+        "parameters": 22713728,
+        "match_status": "exact",
+        "readme_status": "found",
+        "readme_url": "https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/blob/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/README.md",
+        "description": "Компактный SentenceTransformer, преобразующий предложения и абзацы в векторы из 384 чисел для семантического поиска. Model card указывает английский язык; качество на фактическом языке рукописей и запросов требует проверки."
+      }
+    },
+    {
+      "id": "manual:InkSight-tool:reranker",
+      "repository": "ds-hub-sochi/InkSight-tool",
+      "model": "cross-encoder/ms-marco-MiniLM-L-6-v2",
+      "reviewed_commit": "e8af071dc1e8ee4c789e2341e6c7220e71984694",
+      "canonical_model": "cross-encoder/ms-marco-MiniLM-L-6-v2",
+      "task": "Опциональное переранжирование найденных документов; по умолчанию выключено",
+      "stage": "configuration",
+      "origin": "open_weights",
+      "owner": "ds-hub-sochi",
+      "status": "reviewed",
+      "review_evidence": [
+        "https://github.com/ds-hub-sochi/InkSight-tool/blob/e8af071dc1e8ee4c789e2341e6c7220e71984694/backend/src/agentic_rag/services/reranker.py#L30",
+        "https://github.com/ds-hub-sochi/InkSight-tool/blob/e8af071dc1e8ee4c789e2341e6c7220e71984694/backend/src/agentic_rag/services/retrieval.py#L15"
+      ],
+      "evidence": [
+        {
+          "path": "backend/src/agentic_rag/services/reranker.py",
+          "line": 11,
+          "cell": null,
+          "kind": "manual_review",
+          "context": "code",
+          "url": "https://github.com/ds-hub-sochi/InkSight-tool/blob/e8af071dc1e8ee4c789e2341e6c7220e71984694/backend/src/agentic_rag/services/reranker.py#L11"
+        }
+      ],
+      "lifecycle": {
+        "status": "not_checked"
+      },
+      "role": "reranker",
+      "notes": "Имя в settings.reranker_model отличается от default в RetrievalService; прохождение значения settings до reranker не подтверждено.",
+      "family": "Cross-encoder",
+      "business_task": "Поднимать выше в результатах поиска те фрагменты рукописей, которые лучше отвечают на вопрос исследователя",
+      "business_domain": "Поиск и анализ рукописей",
+      "input": "Пары «вопрос — найденный фрагмент текста»",
+      "output": "Оценки релевантности и переупорядоченный список документов",
+      "business_evidence": [
+        "https://github.com/ds-hub-sochi/InkSight-tool/blob/e8af071dc1e8ee4c789e2341e6c7220e71984694/backend/src/agentic_rag/services/retrieval.py#L14",
+        "https://github.com/ds-hub-sochi/InkSight-tool/blob/e8af071dc1e8ee4c789e2341e6c7220e71984694/backend/src/agentic_rag/services/reranker.py#L25",
+        "https://github.com/ds-hub-sochi/InkSight-tool/blob/e8af071dc1e8ee4c789e2341e6c7220e71984694/backend/src/agentic_rag/services/reranker.py#L30",
+        "https://github.com/ds-hub-sochi/InkSight-tool/blob/e8af071dc1e8ee4c789e2341e6c7220e71984694/backend/src/agentic_rag/services/retrieval.py#L79"
+      ],
+      "code_trace": [
+        {
+          "step": "Retrieval задаёт default reranker и флаг выключенного состояния",
+          "source": "https://github.com/ds-hub-sochi/InkSight-tool/blob/e8af071dc1e8ee4c789e2341e6c7220e71984694/backend/src/agentic_rag/services/retrieval.py#L14"
+        },
+        {
+          "step": "Модель загружается только при включении",
+          "source": "https://github.com/ds-hub-sochi/InkSight-tool/blob/e8af071dc1e8ee4c789e2341e6c7220e71984694/backend/src/agentic_rag/services/reranker.py#L25"
+        },
+        {
+          "step": "CrossEncoder создаётся из model_name",
+          "source": "https://github.com/ds-hub-sochi/InkSight-tool/blob/e8af071dc1e8ee4c789e2341e6c7220e71984694/backend/src/agentic_rag/services/reranker.py#L30"
+        },
+        {
+          "step": "Переранжирование применяется условно",
+          "source": "https://github.com/ds-hub-sochi/InkSight-tool/blob/e8af071dc1e8ee4c789e2341e6c7220e71984694/backend/src/agentic_rag/services/retrieval.py#L79"
+        }
+      ],
+      "model_info": {
+        "requested_id": "cross-encoder/ms-marco-MiniLM-L-6-v2",
+        "lookup_status": "found",
+        "checked_at": "2026-10-16T09:03:12+00:00",
+        "metadata_url": "https://huggingface.co/api/models/cross-encoder/ms-marco-MiniLM-L-6-v2",
+        "id": "cross-encoder/ms-marco-MiniLM-L6-v2",
+        "source_url": "https://huggingface.co/cross-encoder/ms-marco-MiniLM-L6-v2",
+        "source_revision": "233902d25c440f23af6f7d6e94d2946bac0bee0a",
+        "publisher": "cross-encoder",
+        "model_task": "text-ranking",
+        "architecture": "bert",
+        "license": "apache-2.0",
+        "languages": [
+          "en"
+        ],
+        "private": false,
+        "gated": false,
+        "parameters": 22714113,
+        "match_status": "alias",
+        "readme_status": "found",
+        "readme_url": "https://huggingface.co/cross-encoder/ms-marco-MiniLM-L6-v2/blob/233902d25c440f23af6f7d6e94d2946bac0bee0a/README.md",
+        "description": "Cross-encoder MiniLM, обученный ранжировать англоязычные пары «запрос — пассаж» на MS MARCO. Возвращает оценку релевантности пары. Hugging Face перенаправляет старое имя с L-6 на каноническое MiniLM-L6-v2."
+      }
+    },
+    {
+      "id": "manual:wolf_sounds_demo:local-checkpoint",
+      "repository": "ds-hub-sochi/wolf_sounds_demo",
+      "model": "wolf_sounds_demo/ASTBasedClassifier",
+      "reviewed_commit": "95bdee8bdcd8b1a1c8e854cb531bb13575c663fe",
+      "canonical_model": "wolf_sounds_demo/ASTBasedClassifier",
+      "task": "Итоговый двухклассовый детектор звука: AST с заменённой головой и локальными весами",
+      "stage": "inference_code",
+      "origin": "custom",
+      "owner": "ds-hub-sochi",
+      "status": "reviewed",
+      "review_evidence": [
+        "https://github.com/ds-hub-sochi/wolf_sounds_demo/blob/95bdee8bdcd8b1a1c8e854cb531bb13575c663fe/src/model.py#L36"
+      ],
+      "evidence": [
+        {
+          "path": "src/model.py",
+          "line": 36,
+          "cell": null,
+          "kind": "manual_review",
+          "context": "code",
+          "url": "https://github.com/ds-hub-sochi/wolf_sounds_demo/blob/95bdee8bdcd8b1a1c8e854cb531bb13575c663fe/src/model.py#L36"
+        }
+      ],
+      "lifecycle": {
+        "status": "not_checked"
+      },
+      "family": "Audio Spectrogram Transformer",
+      "role": "final_model",
+      "base_model": "MIT/ast-finetuned-audioset-10-10-0.4593",
+      "notes": "Свой класс и загрузка внешнего .pth подтверждены кодом; происхождение/обучение чекпойнта и его checksum неизвестны.",
+      "business_task": "Размечать записи полевых микрофонов по наличию звуков животных и воя волков",
+      "business_domain": "Мониторинг животных",
+      "input": "Спектрограмма фрагмента полевой аудиозаписи",
+      "output": "Метки и временные интервалы животных / воя волков",
+      "business_evidence": [
+        "https://github.com/ds-hub-sochi/wolf_sounds_demo/blob/95bdee8bdcd8b1a1c8e854cb531bb13575c663fe/streamlit_app.py#L64",
+        "https://github.com/ds-hub-sochi/wolf_sounds_demo/blob/95bdee8bdcd8b1a1c8e854cb531bb13575c663fe/src/model.py#L36",
+        "https://github.com/ds-hub-sochi/wolf_sounds_demo/blob/95bdee8bdcd8b1a1c8e854cb531bb13575c663fe/src/utils.py#L84",
+        "https://github.com/ds-hub-sochi/wolf_sounds_demo/blob/95bdee8bdcd8b1a1c8e854cb531bb13575c663fe/streamlit_app.py#L151"
+      ],
+      "code_trace": [
+        {
+          "step": "В UI создаются два экземпляра с разными весами",
+          "source": "https://github.com/ds-hub-sochi/wolf_sounds_demo/blob/95bdee8bdcd8b1a1c8e854cb531bb13575c663fe/streamlit_app.py#L64"
+        },
+        {
+          "step": "После AST загружается специализированный checkpoint",
+          "source": "https://github.com/ds-hub-sochi/wolf_sounds_demo/blob/95bdee8bdcd8b1a1c8e854cb531bb13575c663fe/src/model.py#L36"
+        },
+        {
+          "step": "Классификаторы работают последовательно",
+          "source": "https://github.com/ds-hub-sochi/wolf_sounds_demo/blob/95bdee8bdcd8b1a1c8e854cb531bb13575c663fe/src/utils.py#L84"
+        },
+        {
+          "step": "Метки объединяются во временные интервалы",
+          "source": "https://github.com/ds-hub-sochi/wolf_sounds_demo/blob/95bdee8bdcd8b1a1c8e854cb531bb13575c663fe/streamlit_app.py#L151"
+        }
+      ],
+      "model_info": {
+        "lookup_status": "code_only",
+        "match_status": "unresolved",
+        "id": "wolf_sounds_demo/ASTBasedClassifier",
+        "description": "Специализированная модель проекта: AST, двухклассовая голова и загружаемые .pth-веса. Два экземпляра класса используют разные checkpoint. Общая основа найдена на Hugging Face; точные специализированные веса там не идентифицированы.",
+        "publisher": "ds-hub-sochi (component in repository)",
+        "model_task": "audio-classification",
+        "architecture": "AST + two-class head",
+        "source_url": "https://github.com/ds-hub-sochi/wolf_sounds_demo/blob/95bdee8bdcd8b1a1c8e854cb531bb13575c663fe/src/model.py#L22",
+        "checked_at": "2026-10-16",
+        "base_model_source": "https://huggingface.co/MIT/ast-finetuned-audioset-10-10-0.4593",
+        "searches": [
+          {
+            "query": "ASTBasedClassifier",
+            "result": "No public matches; search result does not establish a license or training provenance."
+          }
+        ]
+      },
+      "applications": [
+        {
+          "canonical_model": "wolf_sounds_demo/animal-vs-no-animal",
+          "business_task": "Отсеивать фрагменты полевой аудиозаписи без звуков животных перед поиском воя волков",
+          "input": "Любая спектрограмма фрагмента записи",
+          "output": "Вероятность звука животного и индексы подходящих фрагментов",
+          "task": "animal-vs-no-animal",
+          "business_evidence": [
+            "https://github.com/ds-hub-sochi/wolf_sounds_demo/blob/95bdee8bdcd8b1a1c8e854cb531bb13575c663fe/streamlit_app.py#L64",
+            "https://github.com/ds-hub-sochi/wolf_sounds_demo/blob/95bdee8bdcd8b1a1c8e854cb531bb13575c663fe/src/utils.py#L84"
+          ],
+          "code_trace": [
+            {
+              "step": "Отсеивать фрагменты полевой аудиозаписи без звуков животных перед поиском воя волков",
+              "source": "https://github.com/ds-hub-sochi/wolf_sounds_demo/blob/95bdee8bdcd8b1a1c8e854cb531bb13575c663fe/src/utils.py#L84"
+            }
+          ]
+        },
+        {
+          "canonical_model": "wolf_sounds_demo/wolf-vs-other-animal",
+          "business_task": "Выделять вой волков среди фрагментов со звуками животных и отмечать его интервалы в записи",
+          "input": "Спектрограммы, прошедшие первый классификатор",
+          "output": "Вероятность воя волка и индексы фрагментов с воем",
+          "task": "wolf-vs-other-animal",
+          "business_evidence": [
+            "https://github.com/ds-hub-sochi/wolf_sounds_demo/blob/95bdee8bdcd8b1a1c8e854cb531bb13575c663fe/streamlit_app.py#L64",
+            "https://github.com/ds-hub-sochi/wolf_sounds_demo/blob/95bdee8bdcd8b1a1c8e854cb531bb13575c663fe/src/utils.py#L97"
+          ],
+          "code_trace": [
+            {
+              "step": "Выделять вой волков среди фрагментов со звуками животных и отмечать его интервалы в записи",
+              "source": "https://github.com/ds-hub-sochi/wolf_sounds_demo/blob/95bdee8bdcd8b1a1c8e854cb531bb13575c663fe/src/utils.py#L97"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "repository_findings": [
+    {
+      "repository": "ds-hub-sochi/InkSight-tool",
+      "reviewed_commit": "e8af071dc1e8ee4c789e2341e6c7220e71984694",
+      "title": "create_react_agent: deprecated API в актуальном LangGraph",
+      "status": "review_needed",
+      "reason": "Код импортирует langgraph.prebuilt.create_react_agent. Актуальный upstream помечает API deprecated. Текущая установленная версия и наличие сбоя не проверялись.",
+      "next_step": "Проверить фактический lockfile/runtime и оценить миграцию с регрессией tool calls, памяти и retrieval.",
+      "source": "https://reference.langchain.com/python/langgraph.prebuilt/chat_agent_executor/create_react_agent",
+      "checked_at": "2026-10-16",
+      "code_evidence": [
+        "https://github.com/ds-hub-sochi/InkSight-tool/blob/e8af071dc1e8ee4c789e2341e6c7220e71984694/backend/src/agentic_rag/services/agent.py#L7"
+      ]
+    }
+  ]
+}
